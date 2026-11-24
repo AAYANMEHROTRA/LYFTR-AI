@@ -11,4 +11,4 @@ COPY --from=builder /opt/venv /opt/venv
 COPY app ./app
 RUN mkdir -p /data && chmod 777 /data
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "mkdir -p /data && chmod 777 /data && exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
