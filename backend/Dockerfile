@@ -10,6 +10,6 @@ COPY --from=builder /opt/venv /opt/venv
 COPY app ./app
 RUN useradd --create-home --uid 10001 appuser && mkdir -p /data && chown -R appuser:appuser /app
 RUN chmod 777 /data
-USER appuser
+USER root
 EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
